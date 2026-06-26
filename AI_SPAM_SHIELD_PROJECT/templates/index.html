@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Spam Shield</title>
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#08002d,#2b0052,#7a005f);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+.container{width:900px;text-align:center;}
+.logo{font-size:70px;}
+h1{font-size:60px;margin:0;}
+h1 span{color:#ff3eb5;}
+.subtitle{letter-spacing:4px;color:#ccc;}
+.info{font-size:22px;}
+textarea{
+width:90%;height:180px;margin-top:20px;border-radius:20px;
+border:2px solid #ff3eb5;background:rgba(0,0,0,.3);
+color:white;font-size:22px;padding:20px;
+}
+button{
+margin-top:25px;padding:18px 50px;border:none;border-radius:50px;
+font-size:22px;color:white;cursor:pointer;
+background:linear-gradient(90deg,#ff3eb5,#008cff);
+}
+.circle,.circle-green{
+width:120px;height:120px;border-radius:50%;
+display:flex;justify-content:center;align-items:center;
+font-size:50px;margin:auto;
+}
+.circle{border:5px solid red;}
+.circle-green{border:5px solid lime;}
+.bar{
+width:80%;height:25px;background:#333;margin:auto;
+border-radius:30px;overflow:hidden;
+}
+.red-fill{height:100%;background:red;}
+.green-fill{height:100%;background:limegreen;}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="logo">🛡</div>
+<h1>AI <span>SPAM</span> SHIELD</h1>
+<p class="subtitle">SMART MESSAGE PROTECTION</p>
+<p class="info">📩 Paste your email below to check if it is spam or not.</p>
+
+<form method="POST">
+<textarea name="message" placeholder="Paste your email..."></textarea><br>
+<button type="submit">🔍 CHECK MESSAGE</button>
+</form>
+
+{% if result == "SPAM" %}
+<div>
+<div class="circle">🚨</div>
+<h2>SPAM DETECTED</h2>
+<h3>{{ confidence }}%</h3>
+<div class="bar"><div class="red-fill" style="width:{{ confidence }}%;"></div></div>
+</div>
+{% endif %}
+
+{% if result == "NO SPAM" %}
+<div>
+<div class="circle-green">✅</div>
+<h2>SAFE EMAIL</h2>
+<h3>{{ confidence }}%</h3>
+<div class="bar"><div class="green-fill" style="width:{{ confidence }}%;"></div></div>
+</div>
+{% endif %}
+
+</div>
+</body>
+</html>
